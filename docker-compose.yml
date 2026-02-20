@@ -26,8 +26,6 @@ services:
     volumes:
       - ./config/certify-default.properties:/home/mosip/config/certify-default.properties
       - ./config/certify-csvdp-farmer.properties:/home/mosip/config/certify-csvdp-farmer.properties
-      - ./data/CERTIFY_PKCS12:/home/mosip/CERTIFY_PKCS12
-      - ./loader_path/certify/:/home/mosip/additional_jars/
       - ./config/farmer_identity_data.csv:/home/mosip/config/farmer_identity_data.csv
     depends_on:
       - database
@@ -52,7 +50,6 @@ services:
       - ./config/mimoto-default.properties:/home/mosip/mimoto-default.properties
       - ./config/mimoto-issuers-config.json:/home/mosip/mimoto-issuers-config.json
       - ./config/mimoto-trusted-verifiers.json:/home/mosip/mimoto-trusted-verifiers.json
-      - ./certs/oidckeystore.p12:/home/mosip/certs/oidckeystore.p12
 
   inji-web:
     image: mosipid/inji-web:0.14.1
