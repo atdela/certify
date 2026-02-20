@@ -4,7 +4,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./certify_init.sql:/docker-entrypoint-initdb.d/certify_init.sql
@@ -22,7 +22,7 @@ services:
       download_hsm_client: false
       mosipbox_public_url: http://${CERTIFY_DOMAIN}
       MOSIP_CERTIFY_DOMAIN_URL: http://${CERTIFY_DOMAIN}
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./config/certify-default.properties:/home/mosip/config/certify-default.properties
       - ./config/certify-csvdp-farmer.properties:/home/mosip/config/certify-csvdp-farmer.properties
@@ -47,7 +47,7 @@ services:
       MOSIP_INJI_WEB_URL: http://${INJI_WEB_DOMAIN}
       MOSIP_API_PUBLIC_URL: http://${MIMOTO_DOMAIN}
       MOSIP_SECURITY_ORIGINS: http://${INJI_WEB_DOMAIN}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./config/mimoto-default.properties:/home/mosip/mimoto-default.properties
       - ./config/mimoto-issuers-config.json:/home/mosip/mimoto-issuers-config.json

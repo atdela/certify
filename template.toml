@@ -1,5 +1,5 @@
 [variables]
-POSTGRES_PASSWORD = { type = "password", length = 16 }
+DB_PASSWORD = { type = "password", length = 16 }
 IDP_PARTNER_ENCRYPTION_KEY = { type = "password", length = 32 }
 WALLET_BINDING_PARTNER_API_KEY = { type = "password", length = 32 }
 OIDC_P12_PASSWORD = { type = "password", length = 16 }
@@ -23,7 +23,7 @@ port = 80
 host = "${CERTIFY_DOMAIN}"
 
 [config.env]
-POSTGRES_PASSWORD = "${POSTGRES_PASSWORD}"
+POSTGRES_PASSWORD = "${DB_PASSWORD}"
 IDP_PARTNER_ENCRYPTION_KEY = "${IDP_PARTNER_ENCRYPTION_KEY}"
 WALLET_BINDING_PARTNER_API_KEY = "${WALLET_BINDING_PARTNER_API_KEY}"
 OIDC_P12_PASSWORD = "${OIDC_P12_PASSWORD}"
