@@ -1,0 +1,40 @@
+[variables]
+DATABASE_PASSWORD = { type = "password", length = 16 }
+IDP_PARTNER_ENCRYPTION_KEY = { type = "password", length = 32 }
+WALLET_BINDING_PARTNER_API_KEY = { type = "password", length = 32 }
+OIDC_P12_PASSWORD = { type = "password", length = 16 }
+INJI_WEB_DOMAIN = "inji-web.example.com"
+MIMOTO_DOMAIN = "mimoto.example.com"
+CERTIFY_DOMAIN = "certify.example.com"
+
+[[config.domains]]
+name = "inji-web"
+port = 3004
+host = "${INJI_WEB_DOMAIN}"
+
+[[config.domains]]
+name = "mimoto"
+port = 8099
+host = "${MIMOTO_DOMAIN}"
+
+[[config.domains]]
+name = "certify-nginx"
+port = 80
+host = "${CERTIFY_DOMAIN}"
+
+[config.env]
+POSTGRES_PASSWORD = "${DATABASE_PASSWORD}"
+IDP_PARTNER_ENCRYPTION_KEY = "${IDP_PARTNER_ENCRYPTION_KEY}"
+WALLET_BINDING_PARTNER_API_KEY = "${WALLET_BINDING_PARTNER_API_KEY}"
+OIDC_P12_PASSWORD = "${OIDC_P12_PASSWORD}"
+
+[config.mounts]
+"certify_init.sql" = "/docker-entrypoint-initdb.d/certify_init.sql"
+"config/certify-default.properties" = "/home/mosip/config/certify-default.properties"
+"config/certify-csvdp-farmer.properties" = "/home/mosip/config/certify-csvdp-farmer.properties"
+"config/farmer_identity_data.csv" = "/home/mosip/config/farmer_identity_data.csv"
+"config/mimoto-default.properties" = "/home/mosip/mimoto-default.properties"
+"config/mimoto-issuers-config.json" = "/home/mosip/mimoto-issuers-config.json"
+"config/mimoto-trusted-verifiers.json" = "/home/mosip/mimoto-trusted-verifiers.json"
+"nginx.conf" = "/etc/nginx/conf.d/default.conf"
+"certify-nginx.conf" = "/etc/nginx/conf.d/certify.conf"
